@@ -112,7 +112,7 @@ def currentTime():
         returns:
         float - time in seconds since January 1, 1970
     """
-    printDebug("In currentTime", DEBUG_INFO)
+    printDebug("In currentTime", DEBUG_DEBUG)
 
     return time.time()
 

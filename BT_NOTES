@@ -1,0 +1,3 @@
+sudo rfcomm bind 0 [BT address]
+for example:
+sudo rfcomm bind 0 98:D3:31:FB:22:88

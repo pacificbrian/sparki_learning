@@ -1182,8 +1182,13 @@ def init(com_port, print_versions=True, auto=False, retries=2):
             printDebug("Sparki Capabilities will be limited", DEBUG_ALWAYS)
         
         if USE_EEPROM and print_versions:
-            robot_name = getName()
-            printDebug(robot_name + " is ready", DEBUG_ALWAYS)
+            try:
+                robot_name = getName()
+                _robot_name = robot_name
+            except:
+                _robot_name = "Sparki"
+                pass
+            printDebug(_robot_name + " is ready", DEBUG_ALWAYS)
             
         return True
     else:
@@ -1221,6 +1226,8 @@ def initAuto(print_versions=True, print_correct_port=True):
         possible_ports = [ "/dev/tty.ArcBotics-DevB", "/dev/tty.HC-06-DevB", "/dev/tty.ArcBotics-SPPDev" ]
     elif currentOS == "Windows":
         possible_ports = [ "com" + str(x) for x in range(3,11) ]
+    elif currentOS == "Linux":
+        possible_ports = [ "/dev/rfcomm0"]
     else:
         raise RuntimeError("unable to choose the port automatically for your OS")
 
@@ -2528,7 +2535,7 @@ def wait(wait_time):
         returns:
         nothing
     """
-    printDebug("In wait, wait_time is " + str(wait_time), DEBUG_INFO)
+    printDebug("In wait, wait_time is " + str(wait_time), DEBUG_DEBUG)
     wait_time = float(wait_time)
     maxWait = 600
 

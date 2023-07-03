@@ -15,7 +15,7 @@ while not com_port:
 print("initializing")
 init(com_port)
 
-print("Sparki's name is " + getName())
+#print("Sparki's name is " + getName())
 
 print("moving forward for 1 second")
 forward(1, 1)
